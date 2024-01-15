@@ -5,7 +5,6 @@ namespace Rupadana\FilamentPanelSetting\Pages;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -13,7 +12,6 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use Illuminate\Support\Facades\Storage;
 use Rupadana\FilamentPanelSetting\FilamentPanelSetting;
 
 class PanelSetting extends Page implements HasForms
@@ -63,7 +61,7 @@ class PanelSetting extends Page implements HasForms
                             ]),
                         FileUpload::make('brandLogo'),
                         FileUpload::make('favicon'),
-                    ])
+                    ]),
 
                 // ...
             ])
@@ -80,7 +78,7 @@ class PanelSetting extends Page implements HasForms
         app(FilamentPanelSetting::class)->saveToDisk($this->form->getState());
         $this->redirect(route('filament.admin.pages.panel-setting'));
         Notification::make()
-        ->title(__('filament-panel-setting::panel-setting.title.panel setting saved successfully'))
+            ->title(__('filament-panel-setting::panel-setting.title.panel setting saved successfully'))
             ->success()
             ->send();
     }
@@ -88,7 +86,6 @@ class PanelSetting extends Page implements HasForms
     protected static ?string $navigationIcon = 'heroicon-o-cog-8-tooth';
 
     protected static string $view = 'filament-panel-setting::pages.panel-setting';
-
 
     public static function shouldRegisterNavigation(): bool
     {

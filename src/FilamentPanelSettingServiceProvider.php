@@ -2,20 +2,16 @@
 
 namespace Rupadana\FilamentPanelSetting;
 
-use Filament\Facades\Filament;
-use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
-use Filament\Support\Assets\Css;
-use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Features\SupportTesting\Testable;
+use Rupadana\FilamentPanelSetting\Commands\FilamentPanelSettingCommand;
+use Rupadana\FilamentPanelSetting\Testing\TestsFilamentPanelSetting;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Rupadana\FilamentPanelSetting\Commands\FilamentPanelSettingCommand;
-use Rupadana\FilamentPanelSetting\Testing\TestsFilamentPanelSetting;
 
 class FilamentPanelSettingServiceProvider extends PackageServiceProvider
 {
@@ -72,10 +68,6 @@ class FilamentPanelSettingServiceProvider extends PackageServiceProvider
     public function packageBooted(): void
     {
 
-        
-
-        
-        
         // Asset Registration
         FilamentAsset::register(
             $this->getAssets(),
@@ -114,9 +106,8 @@ class FilamentPanelSettingServiceProvider extends PackageServiceProvider
     protected function getAssets(): array
     {
 
-
         if (app()->runningInConsole()) {
-            
+
             return app(FilamentPanelSetting::class)
                 ->getThemes()
                 ->reduce(
@@ -130,13 +121,12 @@ class FilamentPanelSettingServiceProvider extends PackageServiceProvider
 
                         return [
                             ...$assets,
-                            ...$asset
+                            ...$asset,
                         ];
                     },
                 );
         }
 
-        
         /**
          * @var Theme $enabledTheme
          */

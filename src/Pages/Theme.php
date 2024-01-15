@@ -2,18 +2,8 @@
 
 namespace Rupadana\FilamentPanelSetting\Pages;
 
-use Filament\Facades\Filament;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\MarkdownEditor;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use Illuminate\Support\Facades\Storage;
 use Rupadana\FilamentPanelSetting\FilamentPanelSetting;
 
 class Theme extends Page
@@ -24,17 +14,20 @@ class Theme extends Page
 
     protected FilamentPanelSetting $filamentPanelSetting;
 
-    public static function getNavigationGroup() : string{
+    public static function getNavigationGroup(): string
+    {
         return __('filament-panel-setting::panel-setting.navigation.group');
     }
 
-    public function enableTheme(string $theme = \Rupadana\FilamentPanelSetting\Themes\Contracts\Theme::Ocean) {
-        if($this->filamentPanelSetting->getEnabledTheme()->getName() == $theme) {
+    public function enableTheme(string $theme = \Rupadana\FilamentPanelSetting\Themes\Contracts\Theme::Ocean)
+    {
+        if ($this->filamentPanelSetting->getEnabledTheme()->getName() == $theme) {
 
             Notification::make()
                 ->title(__('filament-panel-setting::themes.title.theme already enabled'))
                 ->info()
                 ->send();
+
             return;
         }
 
@@ -49,7 +42,8 @@ class Theme extends Page
 
     }
 
-    public function boot() {
+    public function boot()
+    {
         $this->filamentPanelSetting = app(FilamentPanelSetting::class);
     }
 

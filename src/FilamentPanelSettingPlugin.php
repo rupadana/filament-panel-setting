@@ -4,7 +4,6 @@ namespace Rupadana\FilamentPanelSetting;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
-use Illuminate\Support\Facades\Storage;
 use Rupadana\FilamentPanelSetting\Themes\Contracts\Theme;
 
 class FilamentPanelSettingPlugin implements Plugin
@@ -24,7 +23,7 @@ class FilamentPanelSettingPlugin implements Plugin
     public function register(Panel $panel): void
     {
         $datas = app(FilamentPanelSetting::class)->getCurrentActivatedData($panel);
-        
+
         $panel->pages([
             \Rupadana\FilamentPanelSetting\Pages\Theme::class,
             \Rupadana\FilamentPanelSetting\Pages\PanelSetting::class,
@@ -32,17 +31,16 @@ class FilamentPanelSettingPlugin implements Plugin
 
         $imagesKey = [
             'brandLogo',
-            'favicon'
+            'favicon',
         ];
 
         $excluded = [
-            'theme'
+            'theme',
         ];
-
 
         foreach ($datas as $key => $value) {
             if ($value) {
-                if (!in_array($key, $excluded)) {
+                if (! in_array($key, $excluded)) {
                     if (in_array($key, $imagesKey)) {
                         $panel->$key(config('app.url') . '/storage/' . $value);
                     } else {
@@ -62,12 +60,14 @@ class FilamentPanelSettingPlugin implements Plugin
     public function enableTheme(string $theme = Theme::Default)
     {
         app(FilamentPanelSetting::class)->enableTheme($theme);
+
         return $this;
     }
 
     public function registerThemes(array $themes = [])
     {
         app(FilamentPanelSetting::class)->themes($themes);
+
         return $this;
     }
 

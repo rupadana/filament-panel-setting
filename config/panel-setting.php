@@ -4,6 +4,6 @@
 return [
     'page' => [
         'theme' => true,
-        'setting' => true
-    ]
+        'setting' => true,
+    ],
 ];

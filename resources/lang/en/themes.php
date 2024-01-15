@@ -9,6 +9,6 @@ return [
     'activated' => 'Activated',
     'title' => [
         'theme successfully enabled' => 'Theme successfully enabled',
-        'theme already enabled' => 'Theme already enabled'
-    ]
+        'theme already enabled' => 'Theme already enabled',
+    ],
 ];

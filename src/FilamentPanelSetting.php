@@ -9,20 +9,17 @@ use Illuminate\Support\Facades\Storage;
 use Rupadana\FilamentPanelSetting\Themes\Contracts\Theme;
 use Rupadana\FilamentPanelSetting\Themes\Darkest;
 use Rupadana\FilamentPanelSetting\Themes\DefaultTheme;
-use Rupadana\FilamentPanelSetting\Themes\Dracula;
 use Rupadana\FilamentPanelSetting\Themes\Nord;
 use Rupadana\FilamentPanelSetting\Themes\Sky;
 use Rupadana\FilamentPanelSetting\Themes\Sunset;
 
 class FilamentPanelSetting
 {
-    protected Collection | null $themes = null;
+    protected ?Collection $themes = null;
 
     protected $enableThemeName = 'default';
 
     protected string $disk = 'local';
-
-
 
     public function __construct()
     {
@@ -32,11 +29,12 @@ class FilamentPanelSetting
             Darkest::make()->getName() => Darkest::class,
             Sky::make()->getName() => Sky::class,
             Nord::make()->getName() => Nord::class,
-            Sunset::make()->getName() => Sunset::class
+            Sunset::make()->getName() => Sunset::class,
         ]);
     }
 
-    public function test() {
+    public function test()
+    {
 
         return Filament::getCurrentPanel();
     }
@@ -52,7 +50,6 @@ class FilamentPanelSetting
         if (isset(app(static::class)->getThemes()->toArray()[$this->enableThemeName])) {
             return app(app(static::class)->getThemes()->toArray()[$this->enableThemeName]);
         }
-
 
         return app(app(static::class)->getThemes()->first());
     }
@@ -77,6 +74,7 @@ class FilamentPanelSetting
     public function themes(array $themes): FilamentPanelSetting
     {
         $this->themes = $this->themes->merge($themes);
+
         return $this;
     }
 
@@ -106,14 +104,15 @@ class FilamentPanelSetting
     {
         return $this->getStorageDisk()->put('panel-' . Filament::getCurrentPanel()->getId() . '-data.json', json_encode([
             ...$this->getCurrentActivatedData(Filament::getCurrentPanel()),
-            'theme' => $theme
+            'theme' => $theme,
         ]));
     }
 
-    public function saveToDisk(array $datas) {
+    public function saveToDisk(array $datas)
+    {
         $this->getStorageDisk()->put('panel-' . Filament::getCurrentPanel()->getId() . '-data.json', json_encode([
             ...$this->getCurrentActivatedData(Filament::getCurrentPanel()),
-            ...$datas
+            ...$datas,
         ]));
     }
 }

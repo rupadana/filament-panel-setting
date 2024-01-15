@@ -6,6 +6,6 @@ return [
         'group' => 'Panel Setting',
     ],
     'title' => [
-        'panel setting saved successfully' => 'Panel setting saved successfully'
-    ]
+        'panel setting saved successfully' => 'Panel setting saved successfully',
+    ],
 ];
