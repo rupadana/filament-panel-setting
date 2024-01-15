@@ -7,7 +7,7 @@
 
 
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+A package that can setting your panel without coding.
 
 ## Installation
 
@@ -17,38 +17,23 @@ You can install the package via composer:
 composer require rupadana/filament-panel-setting
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="filament-panel-setting-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="filament-panel-setting-config"
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="filament-panel-setting-views"
-```
-
-This is the contents of the published config file:
+Register it to your panel.
 
 ```php
-return [
-];
+
+use Rupadana\FilamentPanelSetting\FilamentPanelSettingPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+            ->plugins([
+                FilamentPanelSettingPlugin::make(),
+            ])
+}
 ```
 
-## Usage
 
-```php
-$filamentPanelSetting = new Rupadana\FilamentPanelSetting();
-echo $filamentPanelSetting->echoPhrase('Hello, Rupadana!');
-```
+The data will be saved at storage as a json file.
 
 ## Testing
 
