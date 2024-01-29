@@ -6,6 +6,6 @@ return [
         'setting' => true,
     ],
     'can_access' => [
-        'role' => ['super_admin']
-    ]
+        'role' => ['super_admin'],
+    ],
 ];
