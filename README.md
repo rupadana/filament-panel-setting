@@ -35,9 +35,9 @@ return [
 ];
 ```
 
+## Usage
 
-
-Register it to your panel.
+Register `FilamentPanelSettingPlugin` it to your panel.
 
 ```php
 
