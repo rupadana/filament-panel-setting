@@ -39,7 +39,6 @@ class Theme extends Page
             ->send();
 
         return $this->redirect(route('filament.admin.pages.theme'));
-
     }
 
     public function boot()
@@ -49,11 +48,6 @@ class Theme extends Page
 
     public static function shouldRegisterNavigation(): bool
     {
-        return config('panel-setting.page.theme');
-    }
-
-    public static function canAccess(): bool
-    {
-        return auth()->user()->hasRole(config('panel-setting.can_access.role') ?? []);
+        return config('panel-setting.page.theme') && auth()->user()->hasRole(config('panel-setting.can_access.role') ?? []);
     }
 }

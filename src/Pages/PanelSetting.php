@@ -89,11 +89,6 @@ class PanelSetting extends Page implements HasForms
 
     public static function shouldRegisterNavigation(): bool
     {
-        return config('panel-setting.page.setting');
-    }
-
-    public static function canAccess(): bool
-    {
-        return auth()->user()->hasRole(config('panel-setting.can_access.role') ?? []);
+        return config('panel-setting.page.setting') && auth()->user()->hasRole(config('panel-setting.can_access.role') ?? []);
     }
 }
