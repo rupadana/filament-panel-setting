@@ -17,6 +17,27 @@ You can install the package via composer:
 composer require rupadana/filament-panel-setting
 ```
 
+
+## Publish config
+
+```bash
+php artisan vendor:publish --tag=filament-panel-setting-config
+```
+
+```php
+return [
+    'page' => [
+        'theme' => true,
+        'setting' => true,
+    ],
+    'can_access' => [
+        'role' => ['super_admin']
+    ]
+];
+```
+
+
+
 Register it to your panel.
 
 ```php

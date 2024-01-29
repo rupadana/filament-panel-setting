@@ -91,4 +91,9 @@ class PanelSetting extends Page implements HasForms
     {
         return config('panel-setting.page.setting');
     }
+
+    public static function canAccess(): bool
+    {
+        return auth()->user()->hasRole(config('panel-setting.can_access.role') ?? []);
+    }
 }

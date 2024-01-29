@@ -51,4 +51,9 @@ class Theme extends Page
     {
         return config('panel-setting.page.theme');
     }
+
+    public static function canAccess(): bool
+    {
+        return auth()->user()->hasRole(config('panel-setting.can_access.role') ?? []);
+    }
 }
